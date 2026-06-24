@@ -1,0 +1,176 @@
+/* ── Timeline container ──────────────────────────────── */
+#timeline-section {
+  background: var(--surface2);
+  padding: 12px 0 12px;
+}
+
+#timeline-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 12px 8px;
+}
+
+#timeline-header h3 {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--text2);
+}
+
+#timeline-header .tl-actions { display: flex; gap: 6px; margin-left: auto; }
+
+#timeline-scroll {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0 12px;
+  padding-bottom: 4px;
+}
+
+#timeline-inner {
+  position: relative;
+  height: 100px;
+  min-width: 100%;
+}
+
+/* ── Time ruler ─────────────────────────────────────── */
+#tl-ruler {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 20px;
+  pointer-events: none;
+}
+
+.tl-tick {
+  position: absolute;
+  top: 0;
+  font-size: 9px;
+  color: var(--text2);
+  transform: translateX(-50%);
+  white-space: nowrap;
+  user-select: none;
+}
+
+.tl-tick-line {
+  position: absolute;
+  top: 14px;
+  width: 1px;
+  height: 6px;
+  background: var(--border);
+}
+
+/* ── Main video bar ─────────────────────────────────── */
+#tl-main-bar {
+  position: absolute;
+  top: 26px;
+  left: 0;
+  height: 20px;
+  background: var(--accent);
+  opacity: .35;
+  border-radius: 4px;
+}
+
+/* ── Slow-motion regions ────────────────────────────── */
+.tl-slowmo {
+  position: absolute;
+  top: 26px;
+  height: 20px;
+  background: rgba(243, 156, 18, .55);
+  border: 1px solid #f39c12;
+  border-radius: 4px;
+  cursor: grab;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  font-weight: 700;
+  color: #f39c12;
+  overflow: hidden;
+  user-select: none;
+}
+
+.tl-slowmo .tl-handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 8px;
+  cursor: ew-resize;
+  background: rgba(243,156,18,.5);
+}
+
+.tl-slowmo .tl-handle.left { left: 0; border-radius: 4px 0 0 4px; }
+.tl-slowmo .tl-handle.right { right: 0; border-radius: 0 4px 4px 0; }
+
+/* ── Clip insertions ────────────────────────────────── */
+.tl-clip {
+  position: absolute;
+  top: 52px;
+  height: 20px;
+  background: rgba(46, 204, 113, .45);
+  border: 1px solid #2ecc71;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  padding: 0 6px;
+  font-size: 9px;
+  font-weight: 700;
+  color: #2ecc71;
+  white-space: nowrap;
+  overflow: hidden;
+  cursor: grab;
+  user-select: none;
+  min-width: 30px;
+}
+
+/* ── Score event diamonds ────────────────────────────── */
+.tl-score-event {
+  position: absolute;
+  top: 26px;
+  transform: translateX(-50%);
+  width: 10px;
+  height: 10px;
+  background: #fff;
+  border: 2px solid var(--accent);
+  rotate: 45deg;
+  cursor: pointer;
+  z-index: 5;
+  transition: background .1s;
+}
+
+.tl-score-event:hover { background: var(--accent); }
+
+/* ── Playhead ────────────────────────────────────────── */
+#tl-playhead {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #ff6b35;
+  pointer-events: none;
+  z-index: 10;
+}
+
+#tl-playhead::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -5px;
+  border: 6px solid transparent;
+  border-top-color: #ff6b35;
+}
+
+/* ── Score event tooltip ────────────────────────────── */
+.tl-tooltip {
+  position: fixed;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 11px;
+  z-index: 200;
+  pointer-events: none;
+  white-space: nowrap;
+}

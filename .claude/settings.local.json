@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Invoke-RestMethod -Uri \"http://localhost:3000/api/video/download\" -Method POST -ContentType \"application/json\" -Body '{\"url\":\"https://www.youtube.com/watch?v=IQtfY3ay2ss\"}')",
+      "PowerShell(Invoke-RestMethod -Uri \"http://localhost:3000/api/video/download/progress/9c11def3-4956-4dfd-969e-7ef63b113d4e\" -TimeoutSec 3 2>&1 | Select-Object -First 3)",
+      "PowerShell(Get-NetTCPConnection *)",
+      "PowerShell(Invoke-RestMethod -Uri \"http://localhost:3000/api/video/info/IQtfY3ay2ss\")"
+    ]
+  }
+}

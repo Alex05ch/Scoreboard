@@ -1,0 +1,264 @@
+:root {
+  --bg: #0f0f13;
+  --surface: #1a1a24;
+  --surface2: #22222e;
+  --border: #2e2e3e;
+  --accent: #4f9eff;
+  --accent2: #ff6b35;
+  --green: #2ecc71;
+  --red: #e74c3c;
+  --text: #e8e8f0;
+  --text2: #888899;
+  --radius: 8px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 14px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ── Header ─────────────────────────────────────────── */
+#header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+#header h1 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+#url-input {
+  flex: 1;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 7px 12px;
+  color: var(--text);
+  font-size: 13px;
+  outline: none;
+}
+#url-input:focus { border-color: var(--accent); }
+
+#header .btn { flex-shrink: 0; }
+
+.divider-v {
+  width: 1px;
+  height: 24px;
+  background: var(--border);
+  flex-shrink: 0;
+}
+
+label.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.btn {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  padding: 7px 14px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  transition: opacity .15s;
+}
+.btn:hover { opacity: .85; }
+.btn:disabled { opacity: .4; cursor: not-allowed; }
+.btn.secondary { background: var(--surface2); color: var(--text); border: 1px solid var(--border); }
+.btn.danger { background: var(--red); }
+.btn.green { background: var(--green); }
+
+/* ── Main layout ─────────────────────────────────────── */
+#main {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* ── Left panel: video + controls ───────────────────── */
+#left-panel {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  border-right: 1px solid var(--border);
+}
+
+#video-wrapper {
+  position: relative;
+  background: #000;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#video-wrapper video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+#video-placeholder {
+  color: var(--text2);
+  text-align: center;
+}
+#video-placeholder p { margin-top: 8px; font-size: 13px; }
+
+/* ── Score controls bar ──────────────────────────────── */
+#score-controls {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+#score-controls .divider {
+  width: 1px;
+  height: 24px;
+  background: var(--border);
+}
+
+/* ── Right panel: scoreboard + clips ────────────────── */
+#right-panel {
+  width: 320px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  overflow-y: auto;
+}
+
+.panel-section {
+  border-bottom: 1px solid var(--border);
+  padding: 12px;
+}
+
+.panel-section h3 {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--text2);
+  margin-bottom: 10px;
+}
+
+/* ── Timeline ────────────────────────────────────────── */
+#timeline-section {
+  flex-shrink: 0;
+  border-top: 1px solid var(--border);
+}
+
+/* ── Export progress panel (floating, non-blocking) ─── */
+#progress-overlay {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 100;
+  width: 320px;
+}
+#progress-overlay.active { display: block; }
+
+#progress-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 16px;
+  box-shadow: 0 8px 32px rgba(0,0,0,.5);
+}
+
+#progress-box-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+#progress-box h2 {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+#progress-bar-track {
+  background: var(--bg);
+  border-radius: 99px;
+  height: 6px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+#progress-bar-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 99px;
+  transition: width .4s ease;
+  width: 0%;
+}
+#progress-stage {
+  color: var(--text2);
+  font-size: 11px;
+  margin-bottom: 10px;
+}
+#progress-percent {
+  font-size: 11px;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* ── Player names edit ──────────────────────────────── */
+.name-input {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  padding: 5px 8px;
+  font-size: 13px;
+  width: 100%;
+  outline: none;
+}
+.name-input:focus { border-color: var(--accent); }
+
+/* ── Slow-mo speed selector ─────────────────────────── */
+select {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  padding: 5px 8px;
+  font-size: 13px;
+  outline: none;
+  cursor: pointer;
+}
+
+/* ── Utility ─────────────────────────────────────────── */
+.flex-gap { display: flex; align-items: center; gap: 8px; }
+.flex-col { display: flex; flex-direction: column; gap: 8px; }
+.text-muted { color: var(--text2); }
+.mt-8 { margin-top: 8px; }
+.w-full { width: 100%; }

@@ -1,0 +1,11 @@
+node_modules/
+videos/
+clips/*.mp4
+clips/*.mov
+clips/*.avi
+clips/*.mkv
+clips/*.webm
+clips/*.gif
+exports/
+temp/
+projects/

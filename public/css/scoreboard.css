@@ -1,0 +1,193 @@
+/* ── Scoreboard overlay over the video ─────────────── */
+#scoreboard-overlay {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 8px;
+  padding: 0;
+  min-width: 260px;
+  max-width: 340px;
+  user-select: none;
+  cursor: move;
+  z-index: 10;
+  font-family: 'Segoe UI', sans-serif;
+  backdrop-filter: blur(4px);
+  display: none;
+}
+
+#scoreboard-overlay.visible { display: block; }
+
+.sb-header {
+  background: rgba(79, 158, 255, 0.25);
+  border-bottom: 1px solid rgba(255,255,255,.1);
+  padding: 4px 10px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: rgba(255,255,255,.7);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 8px 8px 0 0;
+}
+
+.sb-header .sb-mode {
+  color: #f39c12;
+  font-size: 9px;
+}
+
+.sb-body {
+  padding: 6px 0;
+}
+
+.sb-row {
+  display: flex;
+  align-items: center;
+  padding: 5px 10px;
+  gap: 6px;
+}
+
+.sb-row:first-child { border-bottom: 1px solid rgba(255,255,255,.08); }
+
+.sb-server-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #f1c40f;
+  flex-shrink: 0;
+  opacity: 0;
+}
+.sb-server-dot.active { opacity: 1; }
+
+.sb-name {
+  flex: 1;
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sb-sets {
+  display: flex;
+  gap: 8px;
+}
+
+.sb-set-score {
+  font-size: 14px;
+  font-weight: 700;
+  color: rgba(255,255,255,.7);
+  min-width: 14px;
+  text-align: center;
+}
+
+.sb-set-score.won { color: #fff; }
+
+.sb-sep {
+  color: rgba(255,255,255,.2);
+  font-size: 10px;
+}
+
+.sb-games {
+  font-size: 16px;
+  font-weight: 800;
+  min-width: 20px;
+  text-align: center;
+  color: rgba(255,255,255,.85);
+}
+
+.sb-game-points {
+  font-size: 18px;
+  font-weight: 900;
+  min-width: 28px;
+  text-align: center;
+  color: #4f9eff;
+}
+
+.sb-game-points.leading { color: #2ecc71; }
+.sb-game-points.trailing { color: rgba(255,255,255,.5); }
+
+/* ── Score control panel ────────────────────────────── */
+.score-btn-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+
+.score-btn-group label {
+  font-size: 11px;
+  color: var(--text2);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+
+.score-team-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.score-team-label {
+  font-size: 13px;
+  font-weight: 600;
+  min-width: 80px;
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.btn-point {
+  padding: 6px 14px;
+  font-size: 16px;
+  line-height: 1;
+}
+
+/* ── Settings rows ──────────────────────────────────── */
+.sb-setting-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-size: 13px;
+}
+
+.toggle {
+  position: relative;
+  width: 36px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.toggle input { opacity: 0; width: 0; height: 0; }
+
+.toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background: var(--border);
+  border-radius: 20px;
+  transition: .2s;
+}
+
+.toggle-slider:before {
+  content: '';
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  left: 3px;
+  top: 3px;
+  background: white;
+  border-radius: 50%;
+  transition: .2s;
+}
+
+.toggle input:checked + .toggle-slider { background: var(--accent); }
+.toggle input:checked + .toggle-slider:before { transform: translateX(16px); }
